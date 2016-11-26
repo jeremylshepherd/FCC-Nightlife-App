@@ -1,5 +1,5 @@
-# FCC_Voting_App
-Free Code Camp Voting Application
+# FCC Nightlife App
+Free Code Camp Nightlife Application
 
 Built using Express, MongoDB(Mongoose), React, React-router, Node.
 

@@ -1,15 +1,16 @@
-User Story: As an authenticated user, I can keep my polls and come back later to access them. X
+Here are the specific user stories you should implement for this project:
 
-User Story: As an authenticated user, I can share my polls with my friends. X
+User Story: As an unauthenticated user, I can view all bars in my area.
 
-User Story: As an authenticated user, I can see the aggregate results of my polls. X
+User Story: As an authenticated user, I can add myself to a bar to indicate I am going there tonight.
 
-User Story: As an authenticated user, I can delete polls that I decide I don't want anymore. X
+User Story: As an authenticated user, I can remove myself from a bar if I no longer want to go there.
 
-User Story: As an authenticated user, I can create a poll with any number of possible items. X
+User Story: As an unauthenticated user, when I login I should not have to search again.
 
-User Story: As an unauthenticated or authenticated user, I can see and vote on everyone's polls. X
+Hint: Try using the Yelp API to find venues in the cities your users search for. If you use Yelp's API, be sure to mention so in your app.
 
-User Story: As an unauthenticated or authenticated user, I can see the results of polls in chart form. (This could be implemented using Chart.js or Google Charts.) X
+Once you've finished implementing these user stories, click the "I've completed this challenge" button and enter the URLs for both your GitHub repository and your live app running on Heroku.
 
-User Story: As an authenticated user, if I don't like the options on a poll, I can create a new option. X
+
+git@github.com:jeremylshepherd/FCC-Nightlife-App.git

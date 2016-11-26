@@ -18746,6 +18746,175 @@ var Chart = {
 module.exports = Chart;
 
 },{}],92:[function(require,module,exports){
+'use strict';
+
+var _react = require('react');
+
+var _react2 = _interopRequireDefault(_react);
+
+var _reactRouter = require('react-router');
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var CustomFooter = _react2.default.createClass({
+  displayName: 'CustomFooter',
+
+  render: function render() {
+    return _react2.default.createElement(
+      'div',
+      { id: 'custom-bootstrap-menu', className: 'navbar navbar-default navbar-fixed-bottom' },
+      _react2.default.createElement(
+        'div',
+        { className: 'container' },
+        _react2.default.createElement(
+          'div',
+          { className: 'navbar-header' },
+          _react2.default.createElement(
+            'a',
+            { className: 'navbar-brand', href: 'www.twitter.com/jeremylshepherd' },
+            '@JeremyLShepherd'
+          )
+        ),
+        _react2.default.createElement(
+          'div',
+          { className: 'nav navbar-nav navbar-right' },
+          _react2.default.createElement(
+            'h4',
+            { className: 'navbar-text' },
+            '...In partial completion of Backend Certification',
+            _react2.default.createElement('span', { className: 'fa fa-fee-code-camp' })
+          )
+        )
+      )
+    );
+  }
+});
+
+module.exports = CustomFooter;
+
+},{"react":89,"react-router":29}],93:[function(require,module,exports){
+'use strict';
+
+var _react = require('react');
+
+var _react2 = _interopRequireDefault(_react);
+
+var _reactRouter = require('react-router');
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var CustomNav = _react2.default.createClass({
+    displayName: 'CustomNav',
+
+    render: function render() {
+        var icon = this.props.avatar !== '' ? _react2.default.createElement(
+            'div',
+            { className: 'collapse navbar-collapse', id: 'nightlife-menu' },
+            _react2.default.createElement(
+                'ul',
+                { className: 'nav navbar-nav navbar-right' },
+                _react2.default.createElement(
+                    'li',
+                    null,
+                    _react2.default.createElement(
+                        'h4',
+                        { className: 'navbar-text' },
+                        'Signed is as ',
+                        this.props.displayName
+                    )
+                ),
+                _react2.default.createElement(
+                    'li',
+                    null,
+                    _react2.default.createElement('img', { src: this.props.avatar, className: 'img-circle icon' })
+                ),
+                _react2.default.createElement(
+                    'li',
+                    null,
+                    _react2.default.createElement(
+                        'a',
+                        { href: '/logout' },
+                        _react2.default.createElement(
+                            'button',
+                            { className: 'btn btn-danger col-xs-12' },
+                            _react2.default.createElement('span', { className: 'fa fa-eject' }),
+                            ' Logout'
+                        )
+                    )
+                )
+            )
+        ) : _react2.default.createElement(
+            'div',
+            { className: 'collapse navbar-collapse', id: 'nightlife-menu' },
+            _react2.default.createElement(
+                'ul',
+                { className: 'nav navbar-nav navbar-right' },
+                _react2.default.createElement(
+                    'li',
+                    null,
+                    _react2.default.createElement(
+                        'h4',
+                        { className: 'navbar-text' },
+                        'Login or Register with:'
+                    )
+                ),
+                _react2.default.createElement(
+                    'li',
+                    null,
+                    _react2.default.createElement(
+                        'a',
+                        { href: '/auth/twitter' },
+                        _react2.default.createElement(
+                            'button',
+                            { className: 'btn btn-twitter col-xs-12' },
+                            _react2.default.createElement('span', { className: 'fa fa-twitter', alt: 'twitter logo' }),
+                            ' Twitter'
+                        )
+                    )
+                )
+            )
+        );
+        return _react2.default.createElement(
+            'nav',
+            { id: 'custom-bootstrap-menu', className: 'navbar navbar-default navbar-static-top navbar-collapse', role: 'navigation' },
+            _react2.default.createElement(
+                'div',
+                { className: 'container-fluid' },
+                _react2.default.createElement(
+                    'div',
+                    { className: 'navbar-header' },
+                    _react2.default.createElement(
+                        _reactRouter.Link,
+                        { className: 'navbar-brand', to: '/' },
+                        'FCC Nightlife App'
+                    ),
+                    _react2.default.createElement(
+                        'button',
+                        {
+                            type: 'button',
+                            className: 'navbar-toggle',
+                            'data-toggle': 'collapse',
+                            'data-target': '#nightlife-menu'
+                        },
+                        _react2.default.createElement(
+                            'span',
+                            { className: 'sr-only' },
+                            'Toggle navigation'
+                        ),
+                        _react2.default.createElement('span', { className: 'icon-bar' }),
+                        _react2.default.createElement('span', { className: 'icon-bar' }),
+                        _react2.default.createElement('span', { className: 'icon-bar' })
+                    )
+                ),
+                icon
+            )
+        );
+    }
+});
+
+module.exports = CustomNav;
+
+},{"react":89,"react-router":29}],94:[function(require,module,exports){
 "use strict";
 
 var React = require("react");
@@ -18774,7 +18943,7 @@ var InfoColumn = React.createClass({
 
 module.exports = InfoColumn;
 
-},{"react":89}],93:[function(require,module,exports){
+},{"react":89}],95:[function(require,module,exports){
 "use strict";
 
 var React = require("react");
@@ -18783,13 +18952,30 @@ var Jumbotron = React.createClass({
     displayName: "Jumbotron",
 
     render: function render() {
-        var user = this.props.displayName ? "Hello, " + this.props.displayName : "FCC Voting App";
+        var user = this.props.displayName ? "Hello, " + this.props.displayName : "Plans Tonight?";
         var greeting;
         if (this.props.displayName) {
             greeting = React.createElement(
-                "h3",
+                "div",
                 null,
-                "Welcome back! Let's get started with a new Poll!"
+                React.createElement(
+                    "p",
+                    null,
+                    React.createElement("i", { className: "fa fa-map-marker fa-5x", "aria-hidden": "true" }),
+                    React.createElement("i", { className: "fa fa-glass fa-5x", "aria-hidden": "true" }),
+                    React.createElement("i", { className: "fa fa-taxi fa-5x", "aria-hidden": "true" })
+                ),
+                React.createElement(
+                    "h3",
+                    null,
+                    "Welcome back! Let's find a great place to meet with friends!"
+                ),
+                ";",
+                React.createElement(
+                    "p",
+                    null,
+                    "Remember: take a cab and drink responsibly."
+                )
             );
         } else {
             greeting = React.createElement(
@@ -18798,13 +18984,19 @@ var Jumbotron = React.createClass({
                 React.createElement(
                     "p",
                     null,
-                    "Login or Register with:"
+                    React.createElement("i", { className: "fa fa-map-marker fa-5x", "aria-hidden": "true" }),
+                    React.createElement("i", { className: "fa fa-glass fa-5x", "aria-hidden": "true" }),
+                    React.createElement("i", { className: "fa fa-taxi fa-5x", "aria-hidden": "true" })
                 ),
                 React.createElement(
-                    "a",
-                    { href: "/auth/github", className: "btn btn-custom-darken" },
-                    React.createElement("span", { className: "fa fa-github", alt: "github logo" }),
-                    " Github"
+                    "h3",
+                    null,
+                    "See which bars are hoppin' tonight and RSVP ahead of time!"
+                ),
+                React.createElement(
+                    "p",
+                    null,
+                    "Remember: take a cab and drink responsibly."
                 )
             );
         }
@@ -18830,7 +19022,7 @@ var Jumbotron = React.createClass({
 
 module.exports = Jumbotron;
 
-},{"react":89}],94:[function(require,module,exports){
+},{"react":89}],96:[function(require,module,exports){
 "use strict";
 
 var React = require("react"),
@@ -18843,6 +19035,12 @@ var Nav = React.createClass({
         var icon = this.props.avatar !== '' ? React.createElement(
             "div",
             { className: "navbar-right" },
+            React.createElement(
+                "h4",
+                { className: "navbar-text" },
+                "Signed is as ",
+                this.props.displayName
+            ),
             React.createElement("img", { src: this.props.avatar, className: "img-circle icon" }),
             React.createElement(
                 "a",
@@ -18860,9 +19058,9 @@ var Nav = React.createClass({
             ),
             React.createElement(
                 "a",
-                { href: "/auth/github", className: "btn btn-custom-darken" },
-                React.createElement("span", { className: "fa fa-github", alt: "github logo" }),
-                " Github"
+                { href: "/auth/twitter", className: "btn btn-twitter" },
+                React.createElement("span", { className: "fa fa-twitter", alt: "twitter logo" }),
+                " Twitter"
             )
         );
         return React.createElement(
@@ -18874,7 +19072,7 @@ var Nav = React.createClass({
                 React.createElement(
                     "h1",
                     { className: "navbar-brand" },
-                    "FCC Voting App"
+                    "FCC Nightlife App"
                 ),
                 React.createElement(
                     "ul",
@@ -18897,7 +19095,7 @@ var Nav = React.createClass({
 
 module.exports = Nav;
 
-},{"react":89,"react-router":29}],95:[function(require,module,exports){
+},{"react":89,"react-router":29}],97:[function(require,module,exports){
 "use strict";
 
 var _react = require("react");
@@ -19150,7 +19348,7 @@ var Poll = _react2.default.createClass({
 
 module.exports = Poll;
 
-},{"./BarChart":90,"./ChartFunctions":91,"jquery":2,"react":89,"react-router":29}],96:[function(require,module,exports){
+},{"./BarChart":90,"./ChartFunctions":91,"jquery":2,"react":89,"react-router":29}],98:[function(require,module,exports){
 'use strict';
 
 var React = require("react");
@@ -19260,13 +19458,15 @@ var PollForm = React.createClass({
 
 module.exports = PollForm;
 
-},{"react":89}],97:[function(require,module,exports){
+},{"react":89}],99:[function(require,module,exports){
 "use strict";
 
 var React = require("react"),
     Nav = require("./Nav"),
+    CustomNav = require("./CustomNav"),
+    CustomFooter = require("./CustomFooter"),
     Jumbotron = require("./Jumbotron"),
-    Subotron = require("./Subotron"),
+    SearchForm = require("./SearchForm"),
     Poll = require('./Poll'),
     InfoColumn = require("./InfoColumn"),
     PollForm = require("./PollForm"),
@@ -19279,11 +19479,7 @@ var ReactApp = React.createClass({
     getInitialState: function getInitialState() {
         return {
             user: {},
-            username: '',
-            auth: false,
-            polls: [],
-            avatar: '',
-            addPoll: false
+            username: ''
         };
     },
 
@@ -19307,186 +19503,77 @@ var ReactApp = React.createClass({
         });
     },
 
-    loadPolls: function loadPolls() {
-        if (!this.state.username) {
-            return;
-        }
-        $.ajax({
-            url: '/api/' + this.state.username + '/polls',
-            dataType: 'json',
-            cache: false,
-            success: function (data) {
-                this.setState({
-                    polls: data
-                });
-            }.bind(this),
-            error: function (xhr, status, err) {
-                console.error('/' + this.state.user.github.username + '/polls', status, err.toString());
-            }.bind(this)
-        });
-    },
-
-    addNewPoll: function addNewPoll(obj) {
-        var poll = obj;
-        $.ajax({
-            url: '/api/newpoll',
-            dataType: 'json',
-            type: 'POST',
-            data: poll,
-            success: function (data) {
-                console.log('success', this.state.addPoll);
-            }.bind(this),
-            error: function (xhr, status, err) {
-                console.error('/' + this.state.user.github.username + '/polls', status, err.toString());
-            }.bind(this)
-        });
-        this.setState({ addPoll: false });
-    },
-
-    deletePoll: function deletePoll(id) {
-        $.ajax({
-            url: '/api/delete/' + id,
-            type: 'DELETE',
-            success: function (data) {
-                this.loadPolls();
-            }.bind(this),
-            error: function (xhr, status, err) {
-                console.error('/api/' + id + '/delete', status, err.toString());
-            }.bind(this)
-        });
-    },
-
-    showForm: function showForm() {
-        this.setState({ addPoll: true });
-    },
-
-    cancelForm: function cancelForm() {
-        this.setState({ addPoll: false });
-    },
-
-    componentDidMount: function componentDidMount() {
-        this.getUser();
-        this.loadPolls();
-    },
-
-    componentDidUpdate: function componentDidUpdate() {
-        this.loadPolls();
-    },
-
     render: function render() {
-        var _this = this;
 
-        var form;
-        if (this.state.addPoll) {
-            form = React.createElement(
-                "div",
-                null,
-                React.createElement(
-                    "h3",
-                    { className: "text-center" },
-                    "Click button to cancel. ",
-                    React.createElement(
-                        "span",
-                        { className: "btn btn-danger", onClick: this.cancelForm },
-                        "Cancel Poll"
-                    )
-                ),
-                React.createElement(PollForm, { submit: this.addNewPoll })
-            );
-        } else {
-            form = React.createElement(
-                "div",
-                { className: "col-xs-12" },
-                React.createElement(
-                    "h3",
-                    { className: "text-center" },
-                    "Here are your polls. Click button to add additional polls. ",
-                    React.createElement(
-                        "span",
-                        { className: "btn btn-primary", onClick: this.showForm },
-                        "Add Poll"
-                    )
-                )
-            );
-        }
-
-        var pollNodes = this.state.polls.map(function (poll, i) {
-            return React.createElement(Poll, { poll: poll, key: i, del: _this.deletePoll });
-        });
-        var all = React.createElement(
-            "div",
-            { className: "col-xs-12" },
-            React.createElement(
-                "h3",
-                { className: "text-center" },
-                "Welcome, please register or log in. Click button view all polls. ",
-                React.createElement(
-                    Link,
-                    { to: "polls", type: "button", className: "btn btn-default" },
-                    "View Polls"
-                )
-            )
-        );
-        var subheading = this.state.auth ? form : all;
         return React.createElement(
             "div",
             null,
-            React.createElement(Nav, { avatar: this.state.avatar }),
+            React.createElement(CustomNav, { avatar: this.state.avatar }),
             React.createElement(Jumbotron, { displayName: this.state.displayName }),
-            React.createElement(
-                "div",
-                { className: "container" },
-                subheading
-            ),
-            React.createElement(
-                "div",
-                { className: "container" },
-                pollNodes
-            )
+            React.createElement(SearchForm, null),
+            React.createElement(CustomFooter, null)
         );
     }
 });
 
 module.exports = ReactApp;
 
-},{"./InfoColumn":92,"./Jumbotron":93,"./Nav":94,"./Poll":95,"./PollForm":96,"./Subotron":98,"jquery":2,"react":89,"react-router":29}],98:[function(require,module,exports){
-"use strict";
+},{"./CustomFooter":92,"./CustomNav":93,"./InfoColumn":94,"./Jumbotron":95,"./Nav":96,"./Poll":97,"./PollForm":98,"./SearchForm":100,"jquery":2,"react":89,"react-router":29}],100:[function(require,module,exports){
+'use strict';
 
-var React = require("react");
+var _react = require('react');
 
-var Subotron = React.createClass({
-    displayName: "Subotron",
+var _react2 = _interopRequireDefault(_react);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var SearchForm = _react2.default.createClass({
+    displayName: 'SearchForm',
+
+    getInitialState: function getInitialState() {
+        return {
+            searchInput: ''
+        };
+    },
+
+    handleSearchInput: function handleSearchInput(e) {
+        this.setState({ searchInput: e.target.value });
+    },
+
+    handleSearchSubmit: function handleSearchSubmit(e) {
+        console.log('Hoo Hoo!');
+    },
 
     render: function render() {
-        var polls = this.props.polls;
-        var pollNodes = polls.map(function (poll, i) {
-            return React.createElement(
-                "li",
-                { key: i },
-                React.createElement(
-                    "a",
-                    { href: '/' + poll._id },
-                    React.createElement(
-                        "h4",
-                        null,
-                        poll.title
+        return _react2.default.createElement(
+            'div',
+            { className: 'container' },
+            _react2.default.createElement(
+                'div',
+                { className: 'row' },
+                _react2.default.createElement(
+                    'div',
+                    { className: 'col-lg-12' },
+                    _react2.default.createElement(
+                        'div',
+                        { className: 'input-group' },
+                        _react2.default.createElement('input', { type: 'text', className: 'form-control', placeholder: 'Where are you at?', value: this.state.searchInput, onChange: this.handleSearchInput }),
+                        _react2.default.createElement(
+                            'span',
+                            { className: 'input-group-btn' },
+                            _react2.default.createElement(
+                                'button',
+                                { className: 'btn btn-primary', type: 'button', onClick: this.handleSearchSubmit },
+                                'Search'
+                            )
+                        )
                     )
                 )
-            );
-        });
-        return React.createElement(
-            "div",
-            { className: "container well well-lg" },
-            React.createElement(
-                "h2",
-                { className: "text-center" },
-                "Here is a list of your polls. Click ADD to add an additional poll."
-            ),
-            pollNodes
+            )
         );
     }
 });
 
-module.exports = Subotron;
+module.exports = SearchForm;
 
-},{"react":89}]},{},[97]);
+},{"react":89}]},{},[99]);

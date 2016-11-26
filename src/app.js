@@ -4,6 +4,8 @@ import ReactApp from "../views/Components/ReactApp.js";
 import PollPage from "../views/Components/PollPage.js";
 import AllPolls from "../views/Components/AllPolls.js";
 import { Router, Route, Link, browserHistory, hashHistory } from 'react-router';
+import $ from 'jquery';
+import boostrap$ from 'bootstrap-jquery';
 
 let app = document.getElementById('app');
 
