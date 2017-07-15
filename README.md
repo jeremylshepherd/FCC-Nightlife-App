@@ -1,8 +1,9 @@
 # FCC Nightlife App
 Free Code Camp Nightlife Application
 
-Built using Express, MongoDB(Mongoose), React, React-router, Node.
+Built using Express, MongoDB(Mongoose), React, React-Router, Node.
 
-Register/Login using Github
+Register/Login using Twitter
 
-![ScreenShot](Screenshot 2016-11-19 16.49.55.png)
+![ScreenShot](ScreenShot_01.png)
+![ScreenShot](/ScreenShot_02.png)

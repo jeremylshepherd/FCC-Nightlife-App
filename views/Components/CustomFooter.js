@@ -1,8 +1,8 @@
 import React from 'react';
 import {Link} from 'react-router';
 
-var CustomFooter = React.createClass({
-  render: function() {
+export default class CustomFooter extends React.Component {
+  render() {
     return (
       <div id="custom-bootstrap-menu" className="navbar navbar-default navbar-fixed-bottom">
         <div className="container">
@@ -15,6 +15,6 @@ var CustomFooter = React.createClass({
       </div>
     );
   }
-});
+}
 
 module.exports = CustomFooter;

@@ -67,26 +67,90 @@ fieldset[disabled] .btn-twitter.active {
   color: #ffffff;
   text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
   background-color: #434343;
-  background-image: -moz-linear-gradient(top, #4d4d4d, #333333);
-  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#4d4d4d), to(#333333));
-  background-image: -webkit-linear-gradient(top, #4d4d4d, #333333);
-  background-image: -o-linear-gradient(top, #4d4d4d, #333333);
-  background-image: linear-gradient(to bottom, #4d4d4d, #333333);
+  background-image: -moz-linear-gradient(top, #5c367d, #74449E);
+  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#5c367d), to(#74449E));
+  background-image: -webkit-linear-gradient(top, #5c367d, #74449E);
+  background-image: -o-linear-gradient(top, #5c367d, #74449E);
+  background-image: linear-gradient(to bottom, #5c367d, #74449E);
   background-repeat: repeat-x;
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff4d4d4d', endColorstr='#ff333333', GradientType=0);
-  border-color: #333333 #333333 #0d0d0d;
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff5c367d', endColorstr='#ff74449E', GradientType=0);
+  border-color: #74449E #74449E #0d0d0d;
   border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
-  *background-color: #333333;
+  *background-color: #74449E;
   /* Darken IE7 buttons by default so they stand out more given they won't have borders */
   filter: progid:DXImageTransform.Microsoft.gradient(enabled = false); }
   .btn-custom-darken.active {
     color: rgba(255, 255, 255, 0.75); }
   .btn-custom-darken:hover, .btn-custom-darken:focus, .btn-custom-darken:active, .btn-custom-darken.active, .btn-custom-darken.disabled, .btn-custom-darken[disabled] {
     color: #ffffff;
-    background-color: #333333;
+    background-color: #9c70c2;
     *background-color: #272727; }
   .btn-custom-darken:active, .btn-custom-darken.active {
     background-color: #1a1a1a; }
+
+.btn-nightlife {
+  color: #ffffff;
+  background-color: #74449E;
+  border-color: #130269; }
+  .btn-nightlife:hover, .btn-nightlife:focus, .btn-nightlife:active, .btn-nightlife.active {
+    color: #ffffff;
+    background-color: #49247A;
+    border-color: #130269; }
+
+.open .dropdown-toggle.btn-nightlife {
+  color: #ffffff;
+  background-color: #49247A;
+  border-color: #130269; }
+
+.btn-nightlife:active, .btn-nightlife.active {
+  background-image: none; }
+
+.open .dropdown-toggle.btn-nightlife {
+  background-image: none; }
+
+.btn-nightlife.disabled, .btn-nightlife[disabled] {
+  background-color: #74449E;
+  border-color: #130269; }
+
+fieldset[disabled] .btn-nightlife {
+  background-color: #74449E;
+  border-color: #130269; }
+
+.btn-nightlife.disabled:hover, .btn-nightlife[disabled]:hover {
+  background-color: #74449E;
+  border-color: #130269; }
+
+fieldset[disabled] .btn-nightlife:hover {
+  background-color: #74449E;
+  border-color: #130269; }
+
+.btn-nightlife.disabled:focus, .btn-nightlife[disabled]:focus {
+  background-color: #74449E;
+  border-color: #130269; }
+
+fieldset[disabled] .btn-nightlife:focus {
+  background-color: #74449E;
+  border-color: #130269; }
+
+.btn-nightlife.disabled:active, .btn-nightlife[disabled]:active {
+  background-color: #74449E;
+  border-color: #130269; }
+
+fieldset[disabled] .btn-nightlife:active {
+  background-color: #74449E;
+  border-color: #130269; }
+
+.btn-nightlife.disabled.active, .btn-nightlife[disabled].active {
+  background-color: #74449E;
+  border-color: #130269; }
+
+fieldset[disabled] .btn-nightlife.active {
+  background-color: #74449E;
+  border-color: #130269; }
+
+.btn-nightlife .badge {
+  color: #74449E;
+  background-color: #ffffff; }
 
 .btn-facebook {
   color: #FFFFFF;
@@ -284,28 +348,27 @@ fieldset[disabled] .btn-clear.active {
   max-width: 400px; }
 
 #custom-bootstrap-menu.navbar-default {
-  font-size: #ffffffpx;
+  font-size: 16px;
   background-color: #74449e;
-  border-width: #3d3d3d px;
-  border-radius: #000000 px; }
+  border-width: 1px;
+  border-radius: 4px; }
   #custom-bootstrap-menu.navbar-default .navbar-brand {
     color: white; }
   #custom-bootstrap-menu.navbar-default .navbar-nav > li > a {
-    color: #ded4e6;
-    background-color: #74449e; }
+    color: white; }
     #custom-bootstrap-menu.navbar-default .navbar-nav > li > a:hover, #custom-bootstrap-menu.navbar-default .navbar-nav > li > a:focus {
-      color: #333333;
-      background-color: #9c70c2; }
+      color: #f3edf7;
+      background-color: #8f5eba; }
   #custom-bootstrap-menu.navbar-default .navbar-nav > .active > a {
-    color: black;
-    background-color: #cdb8e0; }
+    color: #f3edf7;
+    background-color: #b594d1; }
     #custom-bootstrap-menu.navbar-default .navbar-nav > .active > a:hover, #custom-bootstrap-menu.navbar-default .navbar-nav > .active > a:focus {
-      color: black;
-      background-color: #cdb8e0; }
+      color: #f3edf7;
+      background-color: #b594d1; }
   #custom-bootstrap-menu.navbar-default .navbar-toggle {
-    border-color: #cdb8e0; }
+    border-color: #b594d1; }
     #custom-bootstrap-menu.navbar-default .navbar-toggle:hover, #custom-bootstrap-menu.navbar-default .navbar-toggle:focus, #custom-bootstrap-menu.navbar-default .navbar-toggle .icon-bar {
-      background-color: #cdb8e0; }
+      background-color: #b594d1; }
     #custom-bootstrap-menu.navbar-default .navbar-toggle:hover .icon-bar, #custom-bootstrap-menu.navbar-default .navbar-toggle:focus .icon-bar {
       background-color: #74449e; }
 
@@ -316,16 +379,17 @@ fieldset[disabled] .btn-clear.active {
   background: rgba(255, 255, 255, 0.95);
   width: 100%;
   height: 100%; }
-
-#logForm,
-#register {
-  margin-top: 15%; }
+  .modal .modal-backdrop {
+    z-index: 0 !important; }
 
 .glyphicon-remove {
   color: #337AB7;
   cursor: pointer;
   font-size: 30px;
   margin-right: -330px; }
+
+body {
+  padding-bottom: 80px; }
 
 a,
 a:hover {
@@ -342,10 +406,10 @@ li {
 .shadow {
   box-shadow: 4px 4px 6px rgba(0, 0, 0, 0.8); }
 
-.icon {
-  width: 60px;
-  margin-top: 10px;
-  margin-right: 10px; }
+.profile-image {
+  width: 36px;
+  margin: 10px;
+  border-radius: 50%; }
 
 .dataViz {
   height: 360px; }
@@ -356,5 +420,14 @@ li {
 .hidden {
   display: none; }
 
-.btn-danger {
-  background: red; }
+.navbar-default .navbar-text,
+.navbar-toggle {
+  color: #fff; }
+
+.panel-info > .panel-heading {
+  background-image: none;
+  background-color: #74449E;
+  color: #ffffff; }
+
+.priceBlock {
+  display: inline-block; }

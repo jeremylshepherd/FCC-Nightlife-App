@@ -7,12 +7,14 @@ var express = require('express');
 var router = express.Router();
 var mongoose = require('mongoose');
 var User = require('../models/Users');
-var Poll = require('../models/Polls');
+var Venue = require('../models/Venues');
 var React = require("react");
 var ReactDOMServer = require("react-dom/server");
 var ReactApp = require("../views/Components/ReactApp");
-var PollPage = require("../views/Components/PollPage");
 var passport = require("passport");
+var googleplaces = require("googleplaces");
+var zipcodes = require('zipcodes');
+var https =  require('https');
 
 require("../config/passport");
 
@@ -30,18 +32,17 @@ function isLoggedIn(req, res, next) {
 }
 
 /******************
-*GITHUB************
+*TWITTER***********
 ******************/
 
-router.get('/auth/github', passport.authenticate('github'));
+router.get('/auth/twitter', passport.authenticate('twitter'));
 
-router.get('/auth/github/callback', passport.authenticate('github', { failureRedirect: '/' }),
+router.get('/auth/twitter/callback', passport.authenticate('twitter', { failureRedirect: '/' }),
     (req, res) => {
       req.flash('loggedin', "Who's awesome? You're awesome! Thanks for logging in.");
       res.redirect('/');
   }
 );
-
 
 /******************************************************************************
 *****************____________Page Routing____________**************************
@@ -65,77 +66,100 @@ router.get('/api/me', isLoggedIn, (req, res) => {
     }
 });
 
-router.post('/api/newpoll', isLoggedIn, (req, res) => {
-  User.findOne({'github.username' : req.user.github.username}, (err, user) => {
-      if(err){res.json(err);}
-      var poll = new Poll({
-          title: req.body.title,
-          author: user._id,
-          options: req.body.options
-      });
-      poll.save((err) => {
-          if(err) {console.log(err);}
-          console.log('Poll saved!');
-      });
-  });
+router.get('/api/zip/:zip', (req, res) => {
+    let loc = zipcodes.lookup(req.params.zip);
+    res.json(loc);
 });
 
-
-router.post('/api/vote/:poll', (req, res) => {
-    let query = {'_id' : req.params.poll,'options.text' : req.body.option};
-    let update = {$inc: {'options.$.votes' : 1}};
-    Poll.findOneAndUpdate(query, update, {new: true, upsert: true},(err, poll) => {
-      if(poll) {
-          res.json(poll);
-      }else {
-          Poll.findOne({'_id' : req.params.poll}, (err, poll) => {
-              if(err) {res.json(err);}
-              poll.options.push({text: req.body.option, votes: 1});
-              poll.save();
-              res.json(poll);
-          });
-      }
-    });
+router.get('/api/city/:state/:city', (req, res) => {
+    let loc = zipcodes.lookupByName(req.params.city, req.params.state);
+    res.json(loc);
 });
 
-router.get('/api/polls', (req, res) => {
-    Poll.find((err,polls) => {
+router.get('/api/bars/:zip', (req, res) => {
+    let logged = req.user ? true : false;
+    Venue.find({zips: req.params.zip},(err, venues) => {
         if(err) {console.log(err);}
-        res.json(polls);
-    });
-});
-
-router.get('/api/poll/:poll', (req, res) => {
-    Poll.findOne({'_id' : req.params.poll}, (err, poll) => {
-       if(err){res.json(err);}
-       res.json(poll);
-    });
-});
-
-
-router.get('/api/:user/polls', isLoggedIn, (req, res) => {
-    User.findOne({'github.username': req.params.user}, (err, user) => {
-        if(err){res.json(err);}
-        Poll.find({'author': user._id}, (err, polls) => {
-            if(err){res.json(err);}
-            res.json(polls);
+        
+        let loc = zipcodes.lookup(req.params.zip);
+        let parameters = {};
+        parameters.location = [loc.latitude, loc.longitude];
+        parameters.types = 'bar';
+        parameters.radius = 24140;
+        let search = new googleplaces(process.env.GOOGLE_PLACES_API_KEY, process.env.GOOGLE_PLACES_OUTPUT_FORMAT);
+        
+        search.nearBySearch(parameters, (err, response) => {
+            if(err) {console.log(err);}
+            let results = response.results;
+            let data = results.map((r) => {
+                let o = {};
+                let going = [];
+                let attending = false;
+                for(let i = 0; i < venues.length; i++) {
+                    if(venues[i].place_id === r.place_id) {
+                        going = venues[i].going;
+                    }
+                    if(logged){
+                        if(going.indexOf(req.user._id) !== -1) {
+                            attending = true;
+                        }
+                    }
+                }
+                o.id = r.id;
+                o.place_id = r.place_id;
+                o.price = r.price_level;
+                o.rating = r.rating;
+                o.photo = r.photos[0];
+                o.name = r.name;
+                o.address = r.vicinity;
+                o.going = going;
+                o.attending = attending;
+                o.auth = req.isAuthenticated();
+                return o;
+            });
+            res.json(data);
         });
     });
 });
 
-router.delete('/api/delete/:poll', isLoggedIn, (req, res) => {
-   Poll.findOne({'_id' : req.params.poll}, (err, poll) => {
-       if(err) {res.json(err);}
-       if(poll.author.toString() === req.user._id.toString()){
-           poll.remove();
-           console.log('record removed.');
-           res.json({message: "Farewell, old friend."});
-       }else{
-          res.json({taunt: "Ah! You all went behind 'uh ear, Daniel-son!", message: "You may only delete your own polls"});
-       }
-   });
+router.post('/api/user/going', isLoggedIn, (req, res) => {
+    User.findOne({'_id': req.user._id}, (err, user) => {
+        if(err){res.json(err);}
+        
+        Venue.findOne({'place_id': req.body.venue}, (err, venue) => {
+            if(err){res.json(err);}
+            if(venue) {
+                venue.going.addToSet(user);
+                venue.zips.addToSet(req.body.zip);
+                venue.save();
+                res.json({'message' : 'User added to venue', 'going' : true});
+            }else{
+                let newVenue = new Venue();
+                newVenue.going.addToSet(user);
+                newVenue.place_id = req.body.venue;
+                newVenue.zips.addToSet(req.body.zip);
+                newVenue.save();
+                res.json({'message' : 'New Venue added', 'going' : true});
+            }
+        });
+    });
 });
 
+router.post('/api/user/leave', isLoggedIn, (req, res) => {
+    User.findOne({'_id': req.user._id}, (err, user) => {
+        if(err){res.json(err);}
+        Venue.findOne({'place_id': req.body.venue}, (err, venue) => {
+            if(err){res.json(err);}
+            if(venue) {
+                venue.going.remove(user);
+                venue.save();
+                res.json({'message' : 'User removed from venue'});
+            }else{
+                res.json({'message' : 'Venue does not exist.'});
+            }
+        });
+    });
+});
 
 router.get('*', (req, res) => {
     var reactString = ReactDOMServer.renderToString(

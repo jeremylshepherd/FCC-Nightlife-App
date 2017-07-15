@@ -12,7 +12,7 @@ var Jumbotron = React.createClass({
                             <i className="fa fa-glass fa-5x" aria-hidden="true"></i>
                             <i className="fa fa-taxi fa-5x" aria-hidden="true"></i>
                         </p>
-                        <h3>Welcome back! Let's find a great place to meet with friends!</h3>;
+                        <h3>Welcome back! Let's find a great place to meet with friends!</h3>
                         <p>Remember: take a cab and drink responsibly.</p>
                     </div>
                     );
