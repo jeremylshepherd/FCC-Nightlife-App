@@ -86,7 +86,7 @@ router.get('/api/bars/:zip', (req, res) => {
         parameters.location = [loc.latitude, loc.longitude];
         parameters.types = 'bar';
         parameters.radius = 24140;
-        let search = new googleplaces(process.env.GOOGLE_PLACES_API_KEY, process.env.GOOGLE_PLACES_OUTPUT_FORMAT);
+        let search = new googleplaces(process.env.GOOGLE_PLACES_API_KEY, "json");
         
         search.nearBySearch(parameters, (err, response) => {
             if(err) {console.log(err);}
